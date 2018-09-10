@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<diamonds>
+    <diamond certNO="1234567890">
+        <cost>
+
+        </cost>
+        <memoDsic>
+
+        </memoDsic>
+        <clarity>
+
+        </clarity>
+        <colour>
+
+        </colour>
+        <measurements>
+            <cut></cut>
+            <polish></polish>
+            <symmetry></symmetry>
+            <fluoresence>
+            </fluoresence>
+            <min_girdle_diameter>
+            </min_girdle_diameter>
+            <max_girdle_diameter>
+            </max_girdle_diameter>
+        </measurements>
+    </diamond>
+
+
+
+
+</diamonds>

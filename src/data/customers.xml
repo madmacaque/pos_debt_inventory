@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<customers>
+    <customer ID = "0001">
+        <name>"Krishna"</name>
+        <phoneNO>09448002087</phoneNO>
+        <diamondsMEMO>
+            <diamond certno="1234567890" marker="SX">
+                <memoPrice>26</memoPrice>
+            </diamond>
+
+            <diamond certno="1234567891">
+
+            </diamond>
+        </diamondsMEMO>
+
+        <diamondsSOLD>
+            <diamond certno="1234567890">
+                <price>25</price>
+            </diamond>
+
+            <diamond certno="1234567891">
+
+            </diamond>
+        </diamondsSOLD>
+
+        <loose_packetsMEMO>
+            <loose_packet marker="AJR" size="-6.5">
+                <weight>10.30</weight>
+                <price>80000</price>
+            </loose_packet>
+        </loose_packetsMEMO>
+
+        <loose_packetsSOLD>
+            <loose_packet>
+
+            </loose_packet>
+        </loose_packetsSOLD>
+
+        <transactions>
+
+        </transactions>
+        <toatlUSD ID="USD">
+
+        </toatlUSD>
+        <totalINR ID="INR">
+
+        </totalINR>
+        <toatlMMK ID="MMK">
+
+        </toatlMMK>
+    </customer>
+
+    <customer ID="0000">
+        <name></name>
+        <phoneNO></phoneNO>
+        <diamondsMEMO>
+            <diamond>
+
+            </diamond>
+        </diamondsMEMO>
+        <diamondsSOLD>
+            <diamond>
+
+            </diamond>
+        </diamondsSOLD>
+        <loose_packetsMEMO>
+            <loose_packet>
+
+            </loose_packet>
+        </loose_packetsMEMO>
+        <loose_packetsSOLD>
+            <loose_packet>
+
+            </loose_packet>
+        </loose_packetsSOLD>
+        <transactions>
+
+        </transactions>
+        <toatlUSD ID="USD">
+
+        </toatlUSD>
+        <totalINR ID="INR">
+
+        </totalINR>
+        <toatlMMK ID="MMK">
+
+        </toatlMMK>
+    </customer>
+</customers>

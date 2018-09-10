@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<transactions>
+    <transaction>
+        <customer>
+            <ID>
+
+            </ID>
+        </customer>
+        <diamond certNO="">
+            <price>
+
+            </price>
+        </diamond>
+        <loose_packet>
+            <weight>
+
+            </weight>
+            <currency>
+
+            </currency>
+        </loose_packet>
+
+        <totalValue>
+
+        </totalValue>
+
+    </transaction>
+
+
+
+
+
+
+</transactions>

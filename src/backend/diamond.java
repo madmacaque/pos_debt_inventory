@@ -42,12 +42,14 @@ public class diamond {
 
     //adds additional details about the certified stone
     private void setadditionalGrades(String cut, String polish, String symmetry, String fluoresence){
+        //TODO:add to diamonds xml file
         cutGrades.add(cut);
         cutGrades.add(polish);
         cutGrades.add(symmetry);
         fluo=fluoresence;
     }
     private void setMeasurement(double min_girld_diameter, double max_girdle_diameter, double height){
+        //TODO: add to diamonds xml file
         Measurement.add(min_girld_diameter);
         Measurement.add(max_girdle_diameter);
         Measurement.add(height);
