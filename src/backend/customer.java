@@ -64,7 +64,7 @@ public class customer {
             this.transc.add(newDiamTransc);
             this.diamSold.add(Diam);
         }
-        System.out.println("Diamond not on memo to this customer");
+        System.out.println("ERROR: Diamond not on memo to this customer");
     }
 
     void sellLoose(loose_packet looseP, double price, String currency, double carats){
@@ -86,7 +86,7 @@ public class customer {
             this.transc.add(newLooseTransc);
             this.looseMemo.add(looseP);
         }
-        System.out.println("Packet not on memo to this customer");
+        System.out.println("ERROR: Packet not on memo to this customer");
     }
 
 
