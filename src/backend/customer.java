@@ -1,8 +1,15 @@
 package backend;
 
 
-import jdk.nashorn.internal.runtime.Debug;
 
+import org.w3c.dom.Document;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import java.io.File;
 import java.util.List;
 
 /**
@@ -19,6 +26,40 @@ public class customer {
     public double totalUSDvalue;
     public double totalINRvalue;
     public double totalMMKvalue;
+
+
+    public static void main (String[] argv){
+        try{
+            //build document
+            File customerXMLFile=new File("data/customers.xml");
+            DocumentBuilderFactory dbfactory=DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder=dbfactory.newDocumentBuilder();
+            Document customerDoc=dBuilder.parse(customerXMLFile);
+
+            //customer operations
+            //add new customer
+
+
+
+
+            //write to xml data/customers.xml
+            TransformerFactory transformerFactory= TransformerFactory.newInstance();
+            Transformer transformer=transformerFactory.newTransformer();
+            DOMSource source=new DOMSource(customerDoc);
+            StreamResult result= new StreamResult(new File("data/customers.xml"));
+            transformer.transform(source, result);
+
+
+
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
+
+
 
     //TODO: log every single action
 
@@ -51,7 +92,6 @@ public class customer {
     //if so, removes diam from memo, marks diam as sold, creates a new transaction with given price,
     // adds the new transaction to list of transactions, adds the diamond to sold list
     //add to total values to the transaction values and their currency values to customer's total currency debt.
-
     void sellDiam(diamond Diam, double discount){
         if(this.diamMemo.contains(Diam)){
             this.diamMemo.remove(Diam);
