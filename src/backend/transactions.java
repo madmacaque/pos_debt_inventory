@@ -34,6 +34,7 @@ public class transactions {
     }
 
     //TODO: figure out how to handle inventory
+    //inventoryxmlmade
     //adds the packet/diam back into inventory with the returned price.
     void customerreturnLoose (customer cust, loose_packet loose, double price){
 
