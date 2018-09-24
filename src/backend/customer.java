@@ -1,16 +1,25 @@
 package backend;
 
 
-import jdk.nashorn.internal.runtime.Debug;
 
+import org.w3c.dom.*;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import java.io.File;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Created by mmthein on 6/9/18.
  */
 public class customer {
     public String name;
-    public int phonenumber;
+    public String phonenumber;
     public List<diamond> diamMemo;
     public List<loose_packet>  looseMemo;
     public List<transactions> transc;
@@ -20,20 +29,73 @@ public class customer {
     public double totalINRvalue;
     public double totalMMKvalue;
 
+
+    public static void main (String[] argv){
+        try{
+            //build document
+            File customerXMLFile=new File("data/customers.xml");
+            DocumentBuilderFactory dbfactory=DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder=dbfactory.newDocumentBuilder();
+            Document customerDoc=dBuilder.parse(customerXMLFile);
+
+            //customer operations
+            //add new customer
+            Node rootCustomers= customerDoc.getFirstChild();
+
+            //create new customer
+            Element customer= customerDoc.createElement("customer");
+            rootCustomers.appendChild(customer);
+
+            //set customer ID
+            setLatestID(customerDoc, customer);
+
+            //enter user given name and phno
+            customer newcustomer=new customer();
+            Element custName= customerDoc.createElement("name");
+            Element custPHNO= customerDoc.createElement("phNO");
+            custName.appendChild(customer);
+            custPHNO.appendChild(customer);
+            custName.setTextContent(newcustomer.name);
+            custPHNO.setTextContent(newcustomer.phonenumber);
+
+
+
+            //write to xml data/customers.xml
+            TransformerFactory transformerFactory= TransformerFactory.newInstance();
+            Transformer transformer=transformerFactory.newTransformer();
+            DOMSource source=new DOMSource(customerDoc);
+            StreamResult result= new StreamResult(new File("data/customers.xml"));
+            transformer.transform(source, result);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
     //TODO: log every single action
 
 
-    //create a new customer with name, ph no., list of certdiamonds on memo, list of loose packets on memo, list of transactions,
-    //list of diamonds sold, and list of loose packets sold.
-    public customer (String name, int phno, List<diamond> diamMEMO, List<loose_packet> looseMEMO, List<transactions> transactions,
-                     List<diamond> diamSOLD, List<loose_packet> looseSOLD) {
-        this.name=name;
-        this.phonenumber=phno;
-        this.diamMemo=diamMEMO;
-        this.diamSold=diamSOLD;
-        this.transc=transactions;
-        this.looseMemo=looseMEMO;
-        this.looseSold=looseSOLD;
+    //create a new customer with name, ph no
+    public customer () {
+        Scanner nameRead=new Scanner(System.in);
+        System.out.println("Enter Name: ");
+        this.name=nameRead.next();
+        Scanner phNORead=new Scanner(System.in);
+        System.out.println("Enter Phone Number: ");
+        this.phonenumber=phNORead.next();
+    }
+
+    //set customer ID with latest id
+    static void setLatestID(Document doc, Element newCustomer){
+        //check latest ID
+        NodeList listofCustomers=doc.getElementsByTagName("customer");
+        int latestID=listofCustomers.getLength() +1;
+
+        //attribute for customer element: ID
+        //ID number goes up by one each time we add a customer
+        Attr attr = doc.createAttribute("ID");
+        attr.setValue(Integer.toString(latestID));
+        newCustomer.setAttributeNode(attr);
     }
 
     //adds items to list of memo
@@ -51,7 +113,6 @@ public class customer {
     //if so, removes diam from memo, marks diam as sold, creates a new transaction with given price,
     // adds the new transaction to list of transactions, adds the diamond to sold list
     //add to total values to the transaction values and their currency values to customer's total currency debt.
-
     void sellDiam(diamond Diam, double discount){
         if(this.diamMemo.contains(Diam)){
             this.diamMemo.remove(Diam);
@@ -73,7 +134,7 @@ public class customer {
             looseP.isSold=true;
             transactions newLooseTransc= new transactions(this);
             newLooseTransc.sellLoose(looseP,price,currency, carats);
-            //TODO: check with 1.1 or not. usd no, inr idk, mmk yes.
+            //TODO: check if needed to multiply 1.1 or not. usd no, inr idk, mmk yes.
             newLooseTransc.totalvalue=newLooseTransc.carats*price;
             if (currency.equals("MMK")) {
                 newLooseTransc.totalvalue *= 1.1;

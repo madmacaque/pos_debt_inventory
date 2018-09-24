@@ -1,6 +1,7 @@
 <?xml version="1.0" ?>
+<inventory>
 <diamonds>
-    <diamond certNO="1234567890">
+    <diamond certNO="">
         <cost>
 
         </cost>
@@ -25,8 +26,13 @@
             </max_girdle_diameter>
         </measurements>
     </diamond>
-
-
-
-
 </diamonds>
+    <loose_packets>
+        <loose_packet marker="">
+            <sieve_size></sieve_size>
+            <description></description>
+            <carats></carats>
+        </loose_packet>
+
+    </loose_packets>
+</inventory>
